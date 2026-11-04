@@ -103,3 +103,5 @@ article.card[style*="padding:0"] .ph-media{border-radius:0}
 @keyframes kk-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media (max-width:860px){.marquee{font-size:19px}.marquee-track{animation-duration:28s}.marquee-group{gap:32px;padding-right:32px}}
 @media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+/* keep logos at their natural proportions inside flex columns */
+.foot img,.logo img{align-self:flex-start;width:auto !important;max-width:100%;object-fit:contain;flex:none}
