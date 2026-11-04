@@ -53,6 +53,37 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
     update();
   }
+  // Kasa Klub slide-in: after 12s or 40% scroll, once per visit; 'later' hides it for 7 days
+  var pop = document.getElementById('kk-pop');
+  if (pop) {
+    var KEY = 'kk-pop-snooze', shown = false, store = null;
+    try { store = window.localStorage; } catch (e) {}
+    var snoozed = false;
+    try { snoozed = store && Number(store.getItem(KEY) || 0) > Date.now(); } catch (e) {}
+    try { if (sessionStorage.getItem('kk-pop-seen')) snoozed = true; } catch (e) {}
+    function openPop() {
+      if (shown || snoozed || (n && n.classList.contains('open'))) return;
+      shown = true; pop.hidden = false;
+      requestAnimationFrame(function () { pop.classList.add('show'); });
+      try { sessionStorage.setItem('kk-pop-seen', '1'); } catch (e) {}
+    }
+    function closePop(days) {
+      pop.classList.remove('show');
+      setTimeout(function () { pop.hidden = true; }, 600);
+      try { if (store) store.setItem(KEY, String(Date.now() + days * 864e5)); } catch (e) {}
+    }
+    if (!snoozed) {
+      setTimeout(openPop, 12000);
+      window.addEventListener('scroll', function onS() {
+        var h = document.documentElement.scrollHeight - innerHeight;
+        if (h > 0 && scrollY / h > 0.4) { openPop(); window.removeEventListener('scroll', onS); }
+      }, { passive: true });
+    }
+    pop.querySelector('.kk-pop-x').addEventListener('click', function () { closePop(7); });
+    pop.querySelector('.kk-pop-later').addEventListener('click', function () { closePop(7); });
+    pop.querySelector('.kk-pop-cta').addEventListener('click', function () { closePop(60); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && pop.classList.contains('show')) closePop(7); });
+  }
   var here = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav a').forEach(function (a) {
     if (a.getAttribute('href') === here) a.classList.add('on');
