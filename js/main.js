@@ -45,7 +45,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function update() {
       var y = window.scrollY, menuOpen = n && n.classList.contains('open');
       shell.classList.toggle('scrolled', y > 10);
-      if (menuOpen || y < shell.offsetHeight + 40) shell.classList.remove('tb-hide');
+      var mobile = window.matchMedia('(max-width:1040px)').matches;
+      if (mobile || menuOpen || y < shell.offsetHeight + 40) shell.classList.remove('tb-hide');
       else if (y > lastY + 4) shell.classList.add('tb-hide');
       else if (y < lastY - 4) shell.classList.remove('tb-hide');
       lastY = y; ticking = false;
