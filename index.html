@@ -34,14 +34,15 @@
 <div class="site" style="display:flex;flex-direction:column;background:#FBF6EE">
 
 <!-- ===== HEADER + HERO (ube ground) ===== -->
-<header class="site-header" style="background:#3F2160;color:#FBF6EE;box-sizing:border-box">
+<header class="site-header" style="background:#3F2160;color:#FBF6EE;box-sizing:border-box;position:relative">
+<div class="hero-bg" aria-hidden="true"><div class="ph-media" style="position:absolute;inset:0;background-image:url(video/kk-v07.jpg);background-size:cover;background-position:center"><video muted loop playsinline preload="none" poster="video/kk-v07.jpg"><source src="video/kk-v07.mp4" type="video/mp4"></video></div></div>
   <div class="wrap topbar" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:18px;padding-bottom:18px">
     <a href="index.html" class="logo" aria-label="Kasa and Kin home" style="display:flex;align-items:center;flex-shrink:0"><img src="images/logo.png" alt="Kasa and Kin" style="height:56px;width:auto;display:block"></a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span class="burger" aria-hidden="true"><span></span><span></span><span></span></span><span class="nav-toggle-label">Menu</span></button><nav id="site-nav" class="nav" aria-label="Main"><a href="ube.html">Ube</a><a href="restaurant.html">Restaurant</a><a href="bakery.html">Bakery</a><a href="grab-and-go.html">Grab &amp; Go</a><a href="menus.html">Menus</a><a href="kasa-klub.html">Kasa Klub</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="https://www.sevenrooms.com" class="btn btn-gold nav-book">Book a table</a></nav>
-    <a href="https://www.sevenrooms.com" class="btn btn-gold book-top" style="min-height:44px;padding:0 20px;font-size:14px;white-space:nowrap;flex-shrink:0">Book a table</a>
+    <a href="https://www.sevenrooms.com" class="btn btn-gold book-top" style="min-height:44px;padding:0 20px;font-size:14px;white-space:nowrap;flex-shrink:0">Book<span class="bt-long">&nbsp;a table</span></a>
   </div>
 
-  <div id="top" class="wrap cols2" style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:56px;align-items:center;padding-top:56px;padding-bottom:88px" >
+  <div id="top" class="wrap cols2 hero-grid" style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:56px;align-items:center;padding-top:56px;padding-bottom:88px" >
     <div style="display:flex;flex-direction:column;gap:28px">
       <p class="eyebrow" style="margin:0;color:#E89A2C">The home of ube · Poland Street, Soho</p>
       <h1 class="h-display hero-h" style="font-size:64px;line-height:1.05;color:#FBF6EE;letter-spacing:-0.025em">Kasa means home.<br>Kin means <em style="font-style:italic;font-weight:400;color:#D9CBEF">family</em>.</h1>
@@ -57,7 +58,7 @@
         <span>From the family behind Romulo Café</span>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:16px">
+    <div class="hero-media" style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:16px">
       <div class="ph ph-media" style="height:420px;grid-column:span 2;border-radius:200px 200px 16px 16px;background-image:url(video/kk-v07.jpg)"><video muted loop playsinline preload="none" poster="video/kk-v07.jpg" aria-label="The Kasa and Kin team welcoming guests on Poland Street"><source src="video/kk-v07.mp4" type="video/mp4"></video></div>
       <div class="ph ph-media" style="height:200px"><picture><source type="image/webp" srcset="images/kk-13-800.webp 800w, images/kk-13-1600.webp 1600w" sizes="(max-width:860px) 100vw, 50vw"><img src="images/kk-13-1600.jpg" alt="Friends reaching for lumpia at a shared table" loading="lazy" decoding="async" style="object-position:center"></picture></div>
       <div class="ph ph-media" style="height:200px"><picture><source type="image/webp" srcset="images/kk-00-800.webp 800w, images/kk-00-1600.webp 1600w" sizes="(max-width:860px) 100vw, 50vw"><img src="images/kk-00-1600.jpg" alt="Ube pandesal torn open to show the filling" loading="lazy" decoding="async" style="object-position:center"></picture></div>
