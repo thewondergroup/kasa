@@ -170,3 +170,23 @@ article.card[style*="padding:0"] .ph-media{border-radius:0}
 .menu-jump .pill.active{background:#3F2160;color:#FBF6EE;border-color:#3F2160}
 @media (max-width:860px){.menu-jump{padding:10px 0}.menu-jump .pill{min-height:40px}}
 @media (prefers-reduced-motion:reduce){.menu-jump{transition:none}}
+
+/* ---- the Kasa & Kin mural ---- */
+.mural{display:block;width:100%;background-color:#3F2160;background-repeat:no-repeat;background-size:auto 100%;background-position:0% 50%;
+  background-image:url(../images/kk-mural.jpg);
+  background-image:image-set(url(../images/kk-mural.webp) type("image/webp"), url(../images/kk-mural.jpg) type("image/jpeg"));
+  animation:kk-mural-pan 45s ease-in-out infinite alternate}
+.mural-big{height:clamp(220px,26vw,420px)}
+.mural-strip{height:140px;animation-duration:60s}
+@keyframes kk-mural-pan{from{background-position:0% 50%}to{background-position:100% 50%}}
+@media (min-width:1600px){.mural-big{background-size:cover;animation:none}}
+@media (max-width:860px){
+  .mural-big{height:240px;animation-duration:30s;
+    background-image:url(../images/kk-mural.jpg);
+    background-image:image-set(url(../images/kk-mural-1400.webp) type("image/webp"), url(../images/kk-mural.jpg) type("image/jpeg"))}
+  .mural-strip{height:110px;animation-duration:35s}
+}
+@media (prefers-reduced-motion:reduce){.mural{animation:none;background-position:50% 50%}}
+.mural-strip{background-size:cover;background-position:50% 30%;animation-name:kk-mural-pan-y}
+@keyframes kk-mural-pan-y{from{background-position:50% 15%}to{background-position:50% 85%}}
+@media (max-width:860px){.mural-strip{background-size:auto 100%;animation-name:kk-mural-pan}}
