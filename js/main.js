@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (mobile || menuOpen || y < shell.offsetHeight + 40) shell.classList.remove('tb-hide');
       else if (y > lastY + 4) shell.classList.add('tb-hide');
       else if (y < lastY - 4) shell.classList.remove('tb-hide');
+      root.classList.toggle('tb-is-hidden', shell.classList.contains('tb-hide'));
       lastY = y; ticking = false;
     }
     window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
@@ -84,6 +85,30 @@ document.addEventListener('DOMContentLoaded', function () {
     pop.querySelector('.kk-pop-later').addEventListener('click', function () { closePop(7); });
     pop.querySelector('.kk-pop-cta').addEventListener('click', function () { closePop(60); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && pop.classList.contains('show')) closePop(7); });
+  }
+  // menus page: sticky jump bar with the current section highlighted
+  var jump = document.querySelector('.menu-jump');
+  if (jump) {
+    var links = Array.prototype.slice.call(jump.querySelectorAll('a[href^="#"]'));
+    var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+    function setActive(id) {
+      links.forEach(function (a) {
+        var on = a.getAttribute('href') === '#' + id;
+        a.classList.toggle('active', on);
+        if (on) { a.setAttribute('aria-current', 'true'); var row = jump.querySelector('.menu-jump-row'); var l = a.offsetLeft - 20; if (row.scrollTo) row.scrollTo({ left: l, behavior: 'smooth' }); }
+        else a.removeAttribute('aria-current');
+      });
+    }
+    function spy() {
+      var line = Math.max((jump.getBoundingClientRect().bottom || 0) + 160, innerHeight * 0.3), cur = null;
+      secs.forEach(function (sct) { if (sct.getBoundingClientRect().top <= line) cur = sct.id; });
+      links.forEach(function (a) { if (!cur) { a.classList.remove('active'); a.removeAttribute('aria-current'); } });
+      if (cur) setActive(cur);
+      jump.classList.toggle('stuck', jump.getBoundingClientRect().top <= (parseFloat(getComputedStyle(jump).top) || 0) + 1 && window.scrollY > 200);
+    }
+    var settle;
+    window.addEventListener('scroll', function () { requestAnimationFrame(spy); clearTimeout(settle); settle = setTimeout(spy, 450); }, { passive: true });
+    spy();
   }
   var here = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav a').forEach(function (a) {
