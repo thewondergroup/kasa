@@ -87,7 +87,7 @@ label{font-size:14px;font-weight:600;color:#3F2160}
 .ph-media img,.ph-media video{object-fit:cover}
 .card .ph-media{border-radius:10px}
 article.card[style*="padding:0"] .ph-media{border-radius:0}
-@media (prefers-reduced-motion:reduce){.ph-media video{display:none}.ph-media{background-size:cover;background-position:center}}
+
 .nav{display:flex;align-items:center}
 @media (max-width:1040px){.nav{flex-direction:column;align-items:stretch}}
 .site-header{z-index:100}
@@ -99,7 +99,6 @@ article.card[style*="padding:0"] .ph-media{border-radius:0}
 .marquee-track{display:flex;width:max-content;animation:kk-marquee 38s linear infinite}
 .marquee-group{display:flex;gap:48px;padding-right:48px;flex-shrink:0}
 .marquee .dot{color:#E89A2C}
-.marquee:hover .marquee-track{animation-play-state:paused}
 @keyframes kk-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media (max-width:860px){.marquee{font-size:19px}.marquee-track{animation-duration:28s}.marquee-group{gap:32px;padding-right:32px}}
 @media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}
@@ -127,3 +126,12 @@ article.card[style*="padding:0"] .ph-media{border-radius:0}
   .hero-grid p{text-shadow:0 1px 12px rgba(20,10,35,0.45)}
   .hero-grid .h-display{text-shadow:0 2px 18px rgba(20,10,35,0.5)}
 }
+
+/* ---- smart sticky header: hides on scroll down, returns on scroll up ---- */
+.site-header{position:relative !important;top:auto !important;padding-top:var(--tb-h,92px)}
+.topbar-shell{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(63,33,96,0);transition:transform .35s cubic-bezier(.4,0,.2,1),background-color .25s ease,box-shadow .25s ease;will-change:transform}
+.topbar-shell.scrolled{background:#3F2160;box-shadow:0 8px 28px rgba(20,10,35,0.28)}
+.topbar-shell.tb-hide{transform:translateY(-100%)}
+.topbar-shell .topbar{padding-top:16px !important;padding-bottom:16px !important}
+@media (max-width:1040px){.topbar-shell .nav{max-height:calc(100svh - var(--tb-h,84px));overflow-y:auto}}
+@media (prefers-reduced-motion:reduce){.topbar-shell{transition:none}}

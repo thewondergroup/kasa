@@ -13,7 +13,7 @@ Static HTML site, no build step. Upload the whole folder to the GitHub repo and 
 ## Before launch
 1. **Photos** — done, except Kasa Klub artist photos (5 placeholders on `kasa-klub.html`). To swap any photo, change the `kk-NN` filenames inside its `<picture>`.
 2. **Prices** — search for `[PRICE]`.
-3. **Booking links** — search for `https://www.sevenrooms.com` and replace with the real SevenRooms/Toast URL. Same for Uber Eats.
+3. **Booking links** — now point to the Toast reservations page. Uber Eats links still need the real store URL.
 4. **Kasa Klub** — `[DATE]`, `[ARTIST]`, `[MONTH]` placeholders on `kasa-klub.html`.
 5. **Hours** — the old site listed two different sets; the footer set is used here. Confirm, and update the JSON-LD in `index.html`/`contact.html` if they change.
 6. **Forms** — the contact and Klub sign-up forms don't submit anywhere yet. Point them at Formspree / Google Sheets / whatever the client uses.
